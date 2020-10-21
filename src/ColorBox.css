@@ -32,7 +32,6 @@
   background-color: rgba(255, 255, 255, 0.3);
   font-size: 1rem;
   line-height: 30px;
-  color: #fff;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
@@ -40,6 +39,10 @@
 
 .copy-button {
   opacity: 0;
+}
+
+.back-button {
+  color: #fff;
 }
 
 .ColorBox:hover .copy-button {
@@ -53,7 +56,6 @@
   left: 0px;
   bottom: 0px;
   padding: 10px;
-  color: black;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 12px;
@@ -65,7 +67,6 @@
   border: none;
   right: 0px;
   bottom: 0px;
-  color: #fff;
   width: 60px;
   height: 30px;
   text-align: center;
@@ -101,7 +102,6 @@
   font-size: 4rem;
   transform: scale(0.1);
   opacity: 0;
-  color: #fff;
 }
 
 .copy-msg.show {
@@ -114,7 +114,6 @@
 
 .copy-msg h1 {
   font-weight: 400;
-  text-shadow: 1px 2px #000;
   background: rgba(255, 255, 255, 0.2);
   width: 100%;
   text-align: center;
