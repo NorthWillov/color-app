@@ -37,7 +37,7 @@ class SingleColorPalette extends Component {
         key={color.name.replace(/ /g, "")}
         name={color.name}
         background={color[format]}
-        showLink={false}
+        fullPalette={false}
       />
     ));
     return (
