@@ -36,14 +36,14 @@ const styles = {
 };
 
 function DraggableColorBox(props) {
-  const { classes, name } = props;
+  const { classes, name, handleClick } = props;
 
   return (
     <div className={classes.root}>
       <div className={classes.boxContent}>
         <span>{name}</span>
         <span>
-          <DeleteIcon className={classes.deleteIcon} />
+          <DeleteIcon className={classes.deleteIcon} onClick={handleClick}/>
         </span>
       </div>
     </div>

@@ -84,6 +84,22 @@ export default function NewPaletteForm(props) {
   const [newColorName, setNewColorName] = React.useState("");
   const [newPaletteName, setNewPaletteName] = React.useState("");
 
+  useEffect(() => {
+    ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
+      colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
+    );
+
+    ValidatorForm.addValidationRule("isColorUnique", (value) =>
+      colors.every(({ color }) => color !== currColor)
+    );
+
+    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
+      props.palettes.every(
+        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+      )
+    );
+  });
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -107,22 +123,6 @@ export default function NewPaletteForm(props) {
     props.history.push("/");
   };
 
-  useEffect(() => {
-    ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
-      colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
-    );
-
-    ValidatorForm.addValidationRule("isColorUnique", (value) =>
-      colors.every(({ color }) => color !== currColor)
-    );
-
-    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
-      props.palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    );
-  });
-
   const addNewColor = () => {
     const newColor = {
       color: currColor,
@@ -136,6 +136,10 @@ export default function NewPaletteForm(props) {
     evt.target.name === "newColorName"
       ? setNewColorName(evt.target.value)
       : setNewPaletteName(evt.target.value);
+  };
+
+  const removeColor = (colorName) => {
+    setColors(colors.filter((color) => color.name !== colorName));
   };
 
   return (
@@ -234,7 +238,12 @@ export default function NewPaletteForm(props) {
       >
         <div className={classes.drawerHeader} />
         {colors.map((c) => (
-          <DraggableColorBox color={c.color} name={c.name} key={c.name} />
+          <DraggableColorBox
+            color={c.color}
+            name={c.name}
+            key={c.name}
+            handleClick={() => removeColor(c.name)}
+          />
         ))}
       </main>
     </div>
