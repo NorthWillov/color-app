@@ -13,17 +13,40 @@ import Button from "@material-ui/core/Button";
 class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      newPaletteName: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
+      this.props.palettes.every(
+        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+      )
+    );
+  }
+
+  handleChange(evt) {
+    this.setState({
+      newPaletteName: evt.target.value,
+    });
+  }
+
+  handleSubmit() {
+    const newPalette = {
+      paletteName: this.state.newPaletteName,
+      id: this.state.newPaletteName.toLowerCase().replace(/ /g, "-"),
+      emoji: "",
+      colors: this.props.colors,
+    };
+    this.props.savePalette(newPalette);
+  }
+
   render() {
-    const {
-      classes,
-      open,
-      handleDrawerOpen,
-      handleSubmit,
-      newPaletteName,
-      handleChange,
-    } = this.props;
+    const { classes, open, handleDrawerOpen } = this.props;
+    const { newPaletteName } = this.state;
     return (
       <div>
         <CssBaseline />
@@ -47,12 +70,12 @@ class PaletteFormNav extends Component {
             <Typography variant="h6" noWrap>
               Persistent drawer
             </Typography>
-            <ValidatorForm onSubmit={handleSubmit}>
+            <ValidatorForm onSubmit={this.handleSubmit}>
               <TextValidator
                 label="Palette Name"
                 value={newPaletteName}
                 name="newPaletteName"
-                onChange={handleChange}
+                onChange={this.handleChange}
                 validators={["required", "isPaletteNameUnique"]}
                 errorMessages={[
                   "Enter a color name",
