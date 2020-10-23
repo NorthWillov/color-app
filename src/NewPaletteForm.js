@@ -129,6 +129,7 @@ export default function NewPaletteForm(props) {
       name: newColorName,
     };
     setColors([...colors, newColor]);
+    setNewColorName("");
   };
 
   const handleChange = (evt) => {
