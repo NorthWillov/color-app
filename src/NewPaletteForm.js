@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -93,6 +93,18 @@ export default function NewPaletteForm() {
 
   const updateCurrentColor = (newColor) => {
     setCurrColor(newColor.hex);
+  };
+
+  const handleSubmit = () => {
+    let newName = "New Palette Name";
+    const newPalette = {
+      palettteName: newName,
+      id: newName.toLowerCase().replace(/ /g, "-"),
+      emoji: "testEmoji",
+      colors: colors,
+    };
+    props.savePalette(newPalette);
+    props.history.push("/");
   };
 
   useEffect(() => {
@@ -122,6 +134,7 @@ export default function NewPaletteForm() {
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="default"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -139,6 +152,12 @@ export default function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="secondary">
+            Go Back
+          </Button>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -192,7 +211,7 @@ export default function NewPaletteForm() {
       >
         <div className={classes.drawerHeader} />
         {colors.map((c) => (
-          <DraggableColorBox color={c.color} name={c.name} key={c.name}/>
+          <DraggableColorBox color={c.color} name={c.name} key={c.name} />
         ))}
       </main>
     </div>
