@@ -21,15 +21,15 @@ export default {
     opacity: "1",
     [sizes.down("lg")]: {
       width: "25%",
-      height: (props) => (props.fullPalette ? "20%" : "50%"),
+      height: "33.3333%",
     },
     [sizes.down("md")]: {
       width: "50%",
-      height: (props) => (props.fullPalette ? "20%" : "50%"),
+      height: "20%",
     },
     [sizes.down("xs")]: {
       width: "100%",
-      height: (props) => (props.fullPalette ? "5%" : "10%"),
+      height: "10%",
     },
   },
   backButton: {
