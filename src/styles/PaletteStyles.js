@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 export default {
   Palette: {
     height: "100vh",
@@ -17,6 +19,18 @@ export default {
     cursor: "pointer",
     marginBottom: "-3.5px",
     opacity: "1",
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: (props) => (props.fullPalette ? "20%" : "50%"),
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: (props) => (props.fullPalette ? "20%" : "50%"),
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: (props) => (props.fullPalette ? "5%" : "10%"),
+    },
   },
   backButton: {
     width: "100px",
