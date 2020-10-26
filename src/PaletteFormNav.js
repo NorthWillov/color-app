@@ -61,7 +61,7 @@ export default function PaletteFormNav(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Create A Palette
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>

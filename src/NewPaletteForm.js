@@ -82,23 +82,35 @@ export default function NewPaletteForm(props) {
           </IconButton>
         </div>
         <Divider />
-        <Typography variant="h4">Design Your Palette</Typography>
-        <Button variant="contained" color="secondary" onClick={clearColors}>
-          Clear Palette
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={addRandomColor}
-          disabled={paletteIsFull}
-        >
-          {paletteIsFull ? "Palette is Full" : "Random Color"}
-        </Button>
-        <ColorPickerForm
-          colors={colors}
-          addNewColor={addNewColor}
-          paletteIsFull={paletteIsFull}
-        />
+        <div className={classes.container}>
+          <Typography variant="h4" gutterBottom>
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={clearColors}
+              className={classes.button}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addRandomColor}
+              disabled={paletteIsFull}
+              className={classes.button}
+            >
+              {paletteIsFull ? "Palette is Full" : "Random Color"}
+            </Button>
+          </div>
+          <ColorPickerForm
+            colors={colors}
+            addNewColor={addNewColor}
+            paletteIsFull={paletteIsFull}
+          />
+        </div>
       </Drawer>
       <main
         className={clsx(classes.content, {
