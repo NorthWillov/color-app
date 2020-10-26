@@ -9,7 +9,7 @@ export default {
     display: "inline-block",
     position: " relative",
     cursor: "pointer",
-    marginBottom: "-4.8px",
+    marginBottom: "-4.9px",
     "&:hover svg": {
       transform: "scale(1.5)",
     },
