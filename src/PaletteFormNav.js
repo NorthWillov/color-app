@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PaletteMetaForm from "./PaletteMetaForm";
 import { Link } from "react-router-dom";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -15,7 +14,13 @@ import useStyles from "./styles/PaletteFormNavStyles";
 export default function PaletteFormNav(props) {
   const classes = useStyles();
 
+  const [formShowing, setFormShowing] = React.useState(false);
+
   const { open, handleDrawerOpen, savePalette, colors, palettes } = props;
+
+  const handleClickOpen = () => {
+    setFormShowing(true);
+  };
 
   return (
     <div className={classes.root}>
@@ -42,14 +47,32 @@ export default function PaletteFormNav(props) {
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <PaletteMetaForm savePalette={savePalette} colors={colors} palettes={palettes}/>
           <Link to="/">
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
               Go Back
             </Button>
           </Link>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClickOpen}
+            className={classes.button}
+          >
+            Save
+          </Button>
         </div>
       </AppBar>
+      {formShowing && (
+        <PaletteMetaForm
+          savePalette={savePalette}
+          colors={colors}
+          palettes={palettes}
+        />
+      )}
     </div>
   );
 }

@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     height: "64px",
+    alignItems: "center",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -27,5 +28,14 @@ export default makeStyles((theme) => ({
   },
   hide: {
     display: "none",
+  },
+  navBtns: {
+    marginRight: "1rem",
+    "& a": {
+      textDecoration: "none",
+    },
+  },
+  button: {
+    margin: "0 0.5rem",
   },
 }));
