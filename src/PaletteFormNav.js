@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PaletteMetaForm from "./PaletteMetaForm";
 import { Link } from "react-router-dom";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import clsx from "clsx";
@@ -14,31 +15,7 @@ import useStyles from "./styles/PaletteFormNavStyles";
 export default function PaletteFormNav(props) {
   const classes = useStyles();
 
-  const [newPaletteName, setNewPaletteName] = React.useState("");
-
-  useEffect(() => {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
-      props.palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    );
-  });
-
-  const handleChange = (evt) => {
-    setNewPaletteName(evt.target.value);
-  };
-
-  const handleSubmit = () => {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      emoji: "",
-      colors: props.colors,
-    };
-    props.savePalette(newPalette);
-  };
-
-  const { open, handleDrawerOpen } = props;
+  const { open, handleDrawerOpen, savePalette, colors, palettes } = props;
 
   return (
     <div className={classes.root}>
@@ -65,22 +42,7 @@ export default function PaletteFormNav(props) {
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <ValidatorForm onSubmit={handleSubmit}>
-            <TextValidator
-              label="Palette Name"
-              value={newPaletteName}
-              name="newPaletteName"
-              onChange={handleChange}
-              validators={["required", "isPaletteNameUnique"]}
-              errorMessages={[
-                "Enter a color name",
-                "Palette name must be unique",
-              ]}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <PaletteMetaForm savePalette={savePalette} colors={colors} palettes={palettes}/>
           <Link to="/">
             <Button variant="contained" color="secondary">
               Go Back
