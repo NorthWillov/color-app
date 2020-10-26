@@ -6,22 +6,21 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { Picker } from "emoji-mart";
+import 'emoji-mart/css/emoji-mart.css'
 
 export default function PaletteMetaForm(props) {
-  const [open, setOpen] = React.useState(true);
   const [newPaletteName, setNewPaletteName] = React.useState("");
+
+  const { savePalette, colors, palettes, handleClose } = props;
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
-      props.palettes.every(
+      palettes.every(
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       )
     );
   });
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleChange = (evt) => {
     setNewPaletteName(evt.target.value);
@@ -32,14 +31,14 @@ export default function PaletteMetaForm(props) {
       paletteName: newPaletteName,
       id: newPaletteName.toLowerCase().replace(/ /g, "-"),
       emoji: "",
-      colors: props.colors,
+      colors: colors,
     };
-    props.savePalette(newPalette);
+    savePalette(newPalette);
   };
 
   return (
     <Dialog
-      open={open}
+      open={true}
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
@@ -50,6 +49,7 @@ export default function PaletteMetaForm(props) {
             Please enter a name for your new beautiful palette. Make sure it's
             unique!
           </DialogContentText>
+          <Picker/>
 
           <TextValidator
             label="Palette Name"

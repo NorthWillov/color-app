@@ -22,6 +22,10 @@ export default function PaletteFormNav(props) {
     setFormShowing(true);
   };
 
+  const handleClose = () => {
+    setFormShowing(false);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -71,6 +75,7 @@ export default function PaletteFormNav(props) {
           savePalette={savePalette}
           colors={colors}
           palettes={palettes}
+          handleClose={handleClose}
         />
       )}
     </div>
