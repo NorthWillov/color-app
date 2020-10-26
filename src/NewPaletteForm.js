@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
 import DraggableColorList from "./DraggableColorList";
- import clsx from "clsx";
+import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -65,7 +65,6 @@ export default function NewPaletteForm(props) {
         palettes={props.palettes}
         handleDrawerOpen={handleDrawerOpen}
         savePalette={savePalette}
-        classes={classes}
         colors={colors}
       />
       <Drawer
