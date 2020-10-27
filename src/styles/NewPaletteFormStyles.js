@@ -1,29 +1,27 @@
-import { makeStyles } from "@material-ui/core/styles";
-import {DRAWER_WIDTH} from "../constans";
-
+import { DRAWER_WIDTH } from "../constants";
 const drawerWidth = DRAWER_WIDTH;
 
-export default makeStyles((theme) => ({
+const styles = theme => ({
   root: {
-    display: "flex",
+    display: "flex"
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    height: "100vh"
   },
   drawerPaper: {
     width: drawerWidth,
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   drawerHeader: {
     display: "flex",
     alignItems: "center",
-    padding: theme.spacing(0, 1),
     width: "100%",
-    // necessary for content to be below app bar
+    padding: "0 8px",
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+    justifyContent: "flex-end"
   },
   content: {
     flexGrow: 1,
@@ -31,16 +29,16 @@ export default makeStyles((theme) => ({
     padding: 0,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: -drawerWidth
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0,
+    marginLeft: 0
   },
   container: {
     width: "90%",
@@ -48,12 +46,14 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   buttons: {
-    width: "100%",
+    width: "100%"
   },
   button: {
-    width: "50%",
-  },
-}));
+    width: "50%"
+  }
+});
+
+export default styles;

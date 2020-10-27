@@ -1,40 +1,42 @@
 import chroma from "chroma-js";
 import sizes from "./sizes";
-
 export default {
   ColorBox: {
     width: "20%",
-    height: (props) => (props.fullPalette ? "25%" : "50%"),
-    backgroundColor: (props) => props.background,
+    height: props => (props.showingFullPalette ? "25%" : "50%"),
     margin: "0 auto",
     display: "inline-block",
-    position: " relative",
+    position: "relative",
     cursor: "pointer",
     marginBottom: "-3.5px",
     "&:hover button": {
-      opacity: "1",
+      opacity: 1
     },
     [sizes.down("lg")]: {
       width: "25%",
-      height: (props) => (props.fullPalette ? "20%" : "33.3333%"),
+      height: props => (props.showingFullPalette ? "20%" : "33.3333%")
     },
     [sizes.down("md")]: {
       width: "50%",
-      height: (props) => (props.fullPalette ? "10%" : "20%"),
+      height: props => (props.showingFullPalette ? "10%" : "20%")
     },
     [sizes.down("xs")]: {
       width: "100%",
-      height: (props) => (props.fullPalette ? "5%" : "10%"),
-    },
+      height: props => (props.showingFullPalette ? "5%" : "10%")
+    }
   },
-  textColor: {
-    color: (props) =>
-      chroma(props.background).luminance() > 0.5 ? "#000" : "#fff",
+  copyText: {
+    color: props =>
+      chroma(props.background).luminance() >= 0.7 ? "black" : "white"
+  },
+  colorName: {
+    color: props =>
+      chroma(props.background).luminance() <= 0.08 ? "white" : "black"
   },
   seeMore: {
-    color: (props) =>
-      chroma(props.background).luminance() > 0.5 ? "#000" : "#fff",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    color: props =>
+      chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.6)" : "white",
+    background: "rgba(255, 255, 255, 0.3)",
     position: "absolute",
     border: "none",
     right: "0px",
@@ -43,10 +45,11 @@ export default {
     height: "30px",
     textAlign: "center",
     lineHeight: "30px",
+    textTransform: "uppercase"
   },
   copyButton: {
-    color: (props) =>
-      chroma(props.background).luminance() > 0.5 ? "#000" : "#fff",
+    color: props =>
+      chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.6)" : "white",
     width: "100px",
     height: "30px",
     position: "absolute",
@@ -57,13 +60,13 @@ export default {
     marginTop: "-15px",
     textAlign: "center",
     outline: "none",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    background: "rgba(255, 255, 255, 0.3)",
     fontSize: "1rem",
     lineHeight: "30px",
     textTransform: "uppercase",
     border: "none",
-    cursor: "pointer",
-    opacity: "0",
+    textDecoration: "none",
+    opacity: 0
   },
   boxContent: {
     position: "absolute",
@@ -71,9 +74,10 @@ export default {
     left: "0px",
     bottom: "0px",
     padding: "10px",
+    color: "black",
     letterSpacing: "1px",
     textTransform: "uppercase",
-    fontSize: "12px",
+    fontSize: "12px"
   },
   copyOverlay: {
     opacity: "0",
@@ -81,15 +85,15 @@ export default {
     width: "100%",
     height: "100%",
     transition: "transform 0.6s ease-in-out",
-    transform: "scale(0.1)",
+    transform: "scale(0.1)"
   },
   showOverlay: {
     opacity: "1",
     transform: "scale(50)",
     zIndex: "10",
-    position: "absolute",
+    position: "absolute"
   },
-  copyMsg: {
+  copyMessage: {
     position: "fixed",
     left: "0",
     right: "0",
@@ -97,13 +101,15 @@ export default {
     bottom: "0",
     display: "flex",
     alignItems: "center",
-    flexDirection: "column",
     justifyContent: "center",
+    flexDirection: "column",
     fontSize: "4rem",
     transform: "scale(0.1)",
     opacity: "0",
+    color: "white",
     "& h1": {
       fontWeight: "400",
+      textShadow: "1px 2px black",
       background: "rgba(255, 255, 255, 0.2)",
       width: "100%",
       textAlign: "center",
@@ -111,19 +117,19 @@ export default {
       padding: "1rem",
       textTransform: "uppercase",
       [sizes.down("xs")]: {
-        fontSize: "5rem",
-      },
+        fontSize: "6rem"
+      }
     },
     "& p": {
       fontSize: "2rem",
-      fontWeight: "100",
-    },
+      fontWeight: "100"
+    }
   },
-  showMsg: {
+  showMessage: {
     opacity: "1",
     transform: "scale(1)",
     zIndex: "25",
     transition: "all 0.4s ease-in-out",
-    transitionDelay: "0.3s",
-  },
+    transitionDelay: "0.3s"
+  }
 };

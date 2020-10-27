@@ -1,50 +1,47 @@
-import chroma from "chroma-js";
 import sizes from "./sizes";
 
-export default {
+const styles = {
   root: {
     width: "20%",
     height: "25%",
-    backgroundColor: (props) => props.color,
     margin: "0 auto",
     display: "inline-block",
-    position: " relative",
+    position: "relative",
     cursor: "pointer",
-    marginBottom: "-4.9px",
+    marginBottom: "-3.5px",
     "&:hover svg": {
-      transform: "scale(1.5)",
+      color: "white",
+      transform: "scale(1.5)"
     },
     [sizes.down("lg")]: {
       width: "25%",
-      height: "20%",
-      marginBottom: "-5px",
+      height: "20%"
     },
     [sizes.down("md")]: {
       width: "50%",
-      height: "10%",
+      height: "10%"
     },
     [sizes.down("sm")]: {
       width: "100%",
-      height: "5%",
-     },
+      height: "5%"
+    }
   },
   boxContent: {
-    color: (props) => (chroma(props.color).luminance() > 0.5 ? "#000" : "#fff"),
     position: "absolute",
     width: "100%",
     left: "0px",
     bottom: "0px",
-    padding: "0 5px 0 5px",
+    padding: "10px",
+    color: "rgba(0, 0, 0, 0.5)",
     letterSpacing: "1px",
     textTransform: "uppercase",
     fontSize: "12px",
     display: "flex",
-    justifyContent: "space-between",
-    [sizes.down("sm")]: {
-      marginBottom: "-2px"
-     },
+    justifyContent: "space-between"
   },
   deleteIcon: {
-    transition: "all 0.3s ease-in-out",
-  },
+    transition: "all 0.3s ease-in-out"
+  }
 };
+
+export default styles;
