@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import arrayMove from "array-move";
 import useStyles from "./styles/NewPaletteFormStyles";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 export default function NewPaletteForm(props) {
   const classes = useStyles();
