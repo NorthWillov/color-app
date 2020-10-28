@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import MiniPalette from "./MiniPalette";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Dialog from "@material-ui/core/Dialog";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,17 +11,17 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { withStyles } from "@material-ui/styles";
-import styles from "./styles/PaletteListStyles";
+import MiniPalette from "./MiniPalette";
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import styles from "./styles/PaletteListStyles";
 
 class PaletteList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openDeleteDialog: false,
-      deletingId: ""
+      deletingId: "",
     };
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
@@ -49,15 +49,14 @@ class PaletteList extends Component {
         <div className={classes.container}>
           <nav className={classes.nav}>
             <h1 className={classes.heading}>React Colors</h1>
-            <Link to='/palette/new'>Create Palette</Link>
+            <Link to="/palette/new">Create Palette</Link>
           </nav>
           <TransitionGroup className={classes.palettes}>
-            {palettes.map(palette => (
-              <CSSTransition key={palette.id} classNames='fade' timeout={500}>
+            {palettes.map((palette) => (
+              <CSSTransition key={palette.id} classNames="fade" timeout={500}>
                 <MiniPalette
                   {...palette}
                   goToPalette={this.goToPalette}
-                  // handleDelete={deletePalette}
                   openDialog={this.openDialog}
                   key={palette.id}
                   id={palette.id}
@@ -68,10 +67,10 @@ class PaletteList extends Component {
         </div>
         <Dialog
           open={openDeleteDialog}
-          aria-labelledby='delete-dialog-title'
+          aria-labelledby="delete-dialog-title"
           onClose={this.closeDialog}
         >
-          <DialogTitle id='delete-dialog-title'>
+          <DialogTitle id="delete-dialog-title">
             Delete This Palette?
           </DialogTitle>
           <List>
@@ -83,7 +82,7 @@ class PaletteList extends Component {
                   <CheckIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary='Delete' />
+              <ListItemText primary="Delete" />
             </ListItem>
             <ListItem button onClick={this.closeDialog}>
               <ListItemAvatar>
@@ -91,7 +90,7 @@ class PaletteList extends Component {
                   <CloseIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary='Cancel' />
+              <ListItemText primary="Cancel" />
             </ListItem>
           </List>
         </Dialog>

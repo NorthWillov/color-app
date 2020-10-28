@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import styles from "./styles/DraggableColorBoxStyles";
 
-const DraggableColorBox = SortableElement(props => {
+const DraggableColorBox = SortableElement((props) => {
   const { classes, handleClick, name, color } = props;
   return (
     <div className={classes.root} style={{ backgroundColor: color }}>

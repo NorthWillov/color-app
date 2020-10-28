@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import DraggableColorList from "./DraggableColorList";
-import arrayMove from "array-move";
+import { arrayMove } from "react-sortable-hoc";
 import styles from "./styles/NewPaletteFormStyles";
 import seedColors from "./seedColors";
 
@@ -55,15 +55,16 @@ class NewPaletteForm extends Component {
     this.setState({ colors: [] });
   }
   addRandomColor() {
-    //pick random color from existing palettes
-    const allColors = this.props.palettes.map(p => p.colors).flat();
+    const allColors = this.props.defaultPalettes.map(p => p.colors).flat();
     let rand;
     let randomColor;
-    let isDuplicatedColor = true;
-    while (isDuplicatedColor) {
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
       rand = Math.floor(Math.random() * allColors.length);
       randomColor = allColors[rand];
-      isDuplicatedColor = this.state.colors.some(color => color.name === randomColor.name)
+      isDuplicateColor = this.state.colors.some(
+        color => color.name === randomColor.name
+      );
     }
     this.setState({ colors: [...this.state.colors, randomColor] });
   }
@@ -71,7 +72,7 @@ class NewPaletteForm extends Component {
     newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
     newPalette.colors = this.state.colors;
     this.props.savePalette(newPalette);
-    this.props.history.push("/");
+    this.props.history.push("/color-app");
   }
   removeColor(colorName) {
     this.setState({

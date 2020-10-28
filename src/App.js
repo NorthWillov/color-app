@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Route, Switch } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Palette from "./Palette";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
@@ -59,6 +59,7 @@ class App extends Component {
                       <NewPaletteForm
                         savePalette={this.savePalette}
                         palettes={this.state.palettes}
+                        defaultPalettes={seedColors}
                         {...routeProps}
                       />
                     </Page>
@@ -80,7 +81,7 @@ class App extends Component {
                 />
                 <Route
                   exact
-                  path="/"
+                  path="/colors-app"
                   render={(routeProps) => (
                     <Page>
                       <PaletteList

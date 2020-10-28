@@ -33,7 +33,13 @@ class PaletteFormNav extends Component {
     this.setState({ formShowing: false });
   }
   render() {
-    const { classes, open, palettes, handleSubmit, handleDrawerOpen } = this.props;
+    const {
+      classes,
+      open,
+      palettes,
+      handleSubmit,
+      handleDrawerOpen,
+    } = this.props;
     const { formShowing } = this.state;
     return (
       <div className={classes.root}>
@@ -61,7 +67,7 @@ class PaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-            <Link to="/">
+            <Link to="/colors-app">
               <Button
                 variant="contained"
                 color="secondary"
